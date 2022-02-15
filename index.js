@@ -13,9 +13,12 @@ class SortedList {
   }
 
   get(pos) {
-    if(this.length <= pos + 1) {
+    
+    if(this.length > pos) {
+      console.log("returning pos")
       return this.items[pos]
     } else {
+      console.log("error")
       throw new Error('OutOfBounds');
     }
   }
@@ -44,8 +47,17 @@ class SortedList {
   }
 
   avg() {
-    return this.sum()/this.length
+    if (this.length){
+      return this.sum()/this.length
+    }else{
+      throw new Error('EmptySortedList');
+    }
+    
   }
 }
 
 module.exports = SortedList;
+
+
+
+
