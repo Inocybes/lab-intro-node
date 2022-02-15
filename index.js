@@ -9,11 +9,26 @@ class SortedList {
     this.items.sort((a,b) => {
       return a-b
     })
+    this.calc_length()
+  }
+
+  remove(item){
+    if (this.length) {
+      const indexFound = this.items.findIndex(element => element===item)
+      if (indexFound>=0) {
+        this.items.splice(indexFound, 1)
+        this.calc_length()
+      }
+    } else { 
+      throw new Error('OutOfBounds');
+    }
+  }
+
+  calc_length() {
     this.length = this.items.length
   }
 
   get(pos) {
-    
     if(this.length > pos) {
       console.log("returning pos")
       return this.items[pos]
@@ -43,7 +58,6 @@ class SortedList {
     return this.items.reduce((acc, num) => {
       return acc + num
     }, 0);
-
   }
 
   avg() {
@@ -52,12 +66,7 @@ class SortedList {
     }else{
       throw new Error('EmptySortedList');
     }
-    
   }
 }
 
 module.exports = SortedList;
-
-
-
-
